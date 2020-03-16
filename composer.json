@@ -37,7 +37,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Kolovious\\MeliSocialite\\": "src/"
+            "Kolovious\\MeliSocialite\\": "app/Libraries/meli"
         },
         "classmap": [
             "database/seeds",
