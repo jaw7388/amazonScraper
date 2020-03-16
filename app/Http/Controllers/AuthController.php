@@ -27,7 +27,11 @@ class AuthController extends Controller
     {
         $meliUser = Socialite::driver('meli')->user();
 
-        dd($meliUser);
+        //dd($meliUser);
+
+        Auth::login($meliUser, true);
+
+        return redirect($this->redirectTo);
 
     }  //
 
