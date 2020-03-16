@@ -11,7 +11,6 @@ use GuzzleHttp\ClientInterface;
 
 use Illuminate\Support\Facades\Auth;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class MeliSocialiteServiceProvider extends ServiceProvider
