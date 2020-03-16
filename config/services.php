@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'meli' => [
+    'client_id' => '5081294175858053',
+    'client_secret' => 'TT1kQ0AqDOp1iUDdAFsOgckYGnwdy5EF',
+    'redirect' => 'https://api-test-love.herokuapp.com',
+    ],
+
 ];

@@ -175,6 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Other service providers...
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        App\Providers\MeliSocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -227,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // Other alias...
+        'Meli' => Kolovious\MeliSocialite\Facade\Meli::class,
     ],
 
 ];
