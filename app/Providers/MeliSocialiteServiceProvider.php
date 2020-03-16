@@ -3,7 +3,9 @@
 namespace App\Providers;
 //namespace Kolovious\MeliSocialite;
 
-use Kolovious\MeliSocialite\MeliSocialite;
+
+//use Kolovious\MeliSocialite\MeliSocialite;
+use Kolovious\MeliSocialite;
 use Kolovious\MeliSocialite\MeliManager;
 use Kolovious\MeliSocialite\MeliUser;
 
