@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\ServiceProvider;
 
-use Laravel\Socialite\Two\User;
-
 class MeliSocialiteServiceProvider extends ServiceProvider
 {
     /**
