@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Contracts\Auth\Authenticatable;
-
-use Socialite;
 
 class LoginController extends Controller
 {
@@ -40,35 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-
-
-    /**
-     * Redirect the user to the Meli authentication page.
-     *
-     * @return Response
-     */
-    public function redirectToProvider()
-    {
-        return Socialite::driver('meli')->redirect();
-    }
-
-    /**
-     * Obtain the user information from Meli.
-     *
-     * @return Response
-     */
-    public function handleProviderCallback()
-    {
-        $meliUser = Socialite::driver('meli')->user();
-
-        //dd($meliUser);
-
-        Auth::login($meliUser, true);
-
-        return redirect($this->redirectTo);
-
-    }  //
-
-
 }

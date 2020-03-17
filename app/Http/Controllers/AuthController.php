@@ -29,9 +29,9 @@ class AuthController extends Controller
 
         //dd($meliUser);
 
-        Auth::login($meliUser, true);
+        //Auth::login($meliUser, true);
 
-        return redirect($this->redirectTo);
+        return redirect('home');
 
     }  //
 
