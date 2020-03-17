@@ -18,7 +18,10 @@
                 </div>
             </div>
         </div>
-        dd($meliUser);
+        @php
+     dd($meliUser);
+@endphp
+       
     </div>
 </div>
 @endsection
