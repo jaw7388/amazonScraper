@@ -31,7 +31,8 @@ class AuthController extends Controller
 
         //Auth::login($meliUser, true);
 
-        //return redirect('home');
+        return redirect()->route('home');
+
 
     }  //
 
