@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('auth/meli', 'AuthController@redirectToProvider');
 Route::get('auth/meli/callback', 'AuthController@handleProviderCallback');
