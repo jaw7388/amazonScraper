@@ -18,7 +18,6 @@
                 </div>
             </div>
         </div>
-     {{ $meliUser }}
        
     </div>
 </div>
