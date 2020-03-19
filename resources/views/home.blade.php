@@ -18,9 +18,7 @@
                 </div>
             </div>
         </div>
-        @php
-     dd($meliUser);
-@endphp
+     {{ $meliUser }}
        
     </div>
 </div>
