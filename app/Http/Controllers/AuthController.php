@@ -27,9 +27,9 @@ class AuthController extends Controller
     {
         $meliUser = Socialite::driver('meli')->user();
 
-        $token         = $user->token;
-        $refresh_token = $user->refresh_token;
-        $expires_at    = $user->expires_at; // UNIX TIMESTAMP
+        $token         = $meliUser->token;
+        $refresh_token = $meliUser->refresh_token;
+        $expires_at    = $meliUser->expires_at; // UNIX TIMESTAMP
         //dd($meliUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
