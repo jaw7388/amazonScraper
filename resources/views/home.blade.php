@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in!
+
+                    {{ dd($meliUser) }}
                 </div>
             </div>
         </div>
