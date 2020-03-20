@@ -29,7 +29,7 @@ class AuthController extends Controller
         //dd($meliUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
-        return view('home');
+        return view('home')->with('meliUser');
     }  //
 
 
