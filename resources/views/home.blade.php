@@ -16,13 +16,15 @@
 
                     You are logged in!
 
-                    @php 
-                    dd($abc); 
-                    @endphp
+                    
+                     
+                    
                 </div>
             </div>
         </div>
        
     </div>
 </div>
+
+{{ $token }} 
 @endsection
