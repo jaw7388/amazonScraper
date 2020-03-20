@@ -16,6 +16,9 @@
 
                     You are logged in!
 
+                    @php 
+                    dd($token); 
+                    @endphp
                 </div>
             </div>
         </div>
