@@ -26,14 +26,14 @@ class AuthController extends Controller
     public function handleProviderCallback()
     {
         $meliUser = Socialite::driver('meli')->user();
-
+        $abc = "asshole";
         $token         = $meliUser->token;
         $refresh_token = $meliUser->refresh_token;
         $expires_at    = $meliUser->expires_at; // UNIX TIMESTAMP
         //dd($meliUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
-        return view('home')->with('token');
+        return view('home')->with('abc');
     }  //
 
 

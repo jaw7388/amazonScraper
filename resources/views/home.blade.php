@@ -17,7 +17,7 @@
                     You are logged in!
 
                     @php 
-                    dd($token); 
+                    dd($abc); 
                     @endphp
                 </div>
             </div>
