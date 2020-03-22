@@ -213,19 +213,34 @@ return [
         //     'search' => true,
         //     'topnav' => true,
         // ],
+        [ 
+            'key' => 'blog',
+            'text' => 'blog', 
+            'url' => 'admin/blog', 
+            'topnav' => true, 
+        ],
+        [   
+            'text' => 'Add new post',
+            'url' => 'admin/blog/new',
+            'can' => 'add-blog-post'
+        ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
-        ],
-        [
+        ], 
+            'PAGES',
+        [   
+            'key'         => 'pages',
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        [
+            'header' => 'account_settings'
+        ],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',

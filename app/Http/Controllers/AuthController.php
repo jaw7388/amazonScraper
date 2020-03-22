@@ -30,7 +30,7 @@ class AuthController extends Controller
         $token         = $meliUser->token;
         $refresh_token = $meliUser->refresh_token;
         $expires_at    = $meliUser->expires_at; // UNIX TIMESTAMP
-        //dd($meliUser);
+        dd($meliUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
         return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
