@@ -31,9 +31,9 @@ return [
     ],
 
     'meli' => [
-    'client_id' => '5081294175858053',
-    'client_secret' => 'TT1kQ0AqDOp1iUDdAFsOgckYGnwdy5EF',
-    'redirect' => 'https://damp-escarpment-29337.herokuapp.com/auth/meli/callback',
+    'client_id' => env("App_ID"),
+    'client_secret' => env('Secret_Key'),
+    'redirect' => env('Redirect_URI'),
+    'siteId' => env('siteId'),
     ],
-
 ];
