@@ -40,9 +40,9 @@ class AuthController extends Controller
         $mlUser['name'] = $meliUser->name;
         $mlUser['email'] = $meliUser->email;
         $mlUser['avatar'] = $meliUser->avatar;
-        //dd($meliUser);
+        dd($meliUser);
         echo "<pre>";
-        print_r($mlUser);
+       // print_r($mlUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
         //return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
