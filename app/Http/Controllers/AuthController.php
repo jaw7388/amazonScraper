@@ -31,15 +31,15 @@ class AuthController extends Controller
         $refresh_token = $meliUser->refresh_token;
         $expires_at    = $meliUser->expires_at; // UNIX TIMESTAMP
     
-        $mlUser['expires_at'] => $meliUser->expires_at;
-        $mlUser['token'] => $meliUser->token;
-        $mlUser['refreshToken'] => $meliUser->refreshToken;
-        $mlUser['expiresIn'] => $meliUser->expiresIn;
-        $mlUser['id'] => $meliUser->id;
-        $mlUser['nickname'] => $meliUser->nickname;
-        $mlUser['name'] => $meliUser->name;
-        $mlUser['email'] => $meliUser->email;
-        $mlUser['avatar'] => $meliUser->avatar;
+        $mlUser['expires_at'] = $meliUser->expires_at;
+        $mlUser['token'] = $meliUser->token;
+        $mlUser['refreshToken'] = $meliUser->refreshToken;
+        $mlUser['expiresIn'] = $meliUser->expiresIn;
+        $mlUser['id'] = $meliUser->id;
+        $mlUser['nickname'] = $meliUser->nickname;
+        $mlUser['name'] = $meliUser->name;
+        $mlUser['email'] = $meliUser->email;
+        $mlUser['avatar'] = $meliUser->avatar;
         //dd($meliUser);
         echo "<pre>"
         print_r($mlUser);
