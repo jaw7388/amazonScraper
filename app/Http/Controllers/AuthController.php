@@ -33,8 +33,8 @@ class AuthController extends Controller
     
         $mlUser['expires_at'] = $meliUser->expires_at;
         $mlUser['token'] = $meliUser->token;
-        $mlUser['refreshToken'] = $meliUser->refreshToken;
-        $mlUser['expiresIn'] = $meliUser->expiresIn;
+        $mlUser['refresh_token'] = $meliUser->refresh_token;
+        $mlUser['expires_at'] = $meliUser->expires_at;
         $mlUser['id'] = $meliUser->id;
         $mlUser['nickname'] = $meliUser->nickname;
         $mlUser['name'] = $meliUser->name;
