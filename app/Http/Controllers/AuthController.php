@@ -30,10 +30,22 @@ class AuthController extends Controller
         $token         = $meliUser->token;
         $refresh_token = $meliUser->refresh_token;
         $expires_at    = $meliUser->expires_at; // UNIX TIMESTAMP
-        dd($meliUser);
+    
+        $mlUser['expires_at'] => $meliUser->expires_at;
+        $mlUser['token'] => $meliUser->token;
+        $mlUser['refreshToken'] => $meliUser->refreshToken;
+        $mlUser['expiresIn'] => $meliUser->expiresIn;
+        $mlUser['id'] => $meliUser->id;
+        $mlUser['nickname'] => $meliUser->nickname;
+        $mlUser['name'] => $meliUser->name;
+        $mlUser['email'] => $meliUser->email;
+        $mlUser['avatar'] => $meliUser->avatar;
+        //dd($meliUser);
+        echo "<pre>"
+        print_r($mlUser);
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
-        return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
+        //return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
     }  //
 
 
