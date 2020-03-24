@@ -17,6 +17,15 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+//**/ Mercadolibre data /**/
+            $table->string('ml_user')->nullable();
+            $table->string('token')->nullable();
+            $table->string('refresh_token')->nullable();
+            $table->string('ml_id')->nullable();
+            $table->string('ml_nickname')->nullable();
+            $table->string('ml_name')->nullable();
+            $table->string('avatar')->nullable();
+//*************************/
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

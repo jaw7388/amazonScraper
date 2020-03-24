@@ -17,6 +17,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        //Mercadolibre data
+        'token',
+        'refresh_token',
+        'ml_id',
+        'ml_nickname',
+        'ml_username',
+        'ml_avatar',
     ];
 
     /**
