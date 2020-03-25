@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
   /**
      * Redirect the user to the Meli authentication page.
      *
