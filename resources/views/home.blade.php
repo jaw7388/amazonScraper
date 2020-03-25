@@ -6,8 +6,8 @@
     {{ Auth::user()->id ?? '' }}
 
 @php
-        $result = Meli::withToken();    
-        print_r($result);
+      $params = array('access_token' => $access_token);
+$result = $meli->get('/users/me', $params, true); 
 @endphp
 
 @endsection
