@@ -4,7 +4,7 @@ namespace App\Providers;
 
 
 use Kolovious\MeliSocialite\MeliSocialite as MeliSocialite;
-
+use Kolovious\MeliSocialite\MeliManager;
 
 use Illuminate\Support\ServiceProvider;
 
