@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Socialite;
+use Auth;
 
 use Illuminate\Http\Request;
 
