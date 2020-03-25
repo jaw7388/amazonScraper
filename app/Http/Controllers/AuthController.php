@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Socialite;
 use Auth;
+use Kolovious\MeliSocialite\Facade\Meli;
 
 use Illuminate\Http\Request;
 
