@@ -64,7 +64,8 @@ class AuthController extends Controller
     public function queryget()
     {    
         $access_token = User::where('id', Auth::user()->id )->firstOrFail();
-        $params = array('access_token' => $access_token->token);
+        $access_token = $access_token->token;
+        $params = array('access_token' => $access_token);
         $result = Meli::get('/users/me', $params, true); 
         return view('home', $result, $access_token);
     }
