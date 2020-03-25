@@ -4,6 +4,6 @@
 
     <h1>Hola</h1>
     {{ Auth::user()->id ?? '' }}
-    {{ $result ?? '' }}
+    {{ print_r($result) ?? '' }}
     
 @endsection
