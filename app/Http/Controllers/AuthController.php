@@ -59,14 +59,19 @@ class AuthController extends Controller
         //Auth::login($meliUser, true);
         //return redirect()->route('home');
         //return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
+        // $params = array('access_token' => $access_token);
+        // $result = Meli::get('/users/me', $params, true); 
     }  //
 
     public function queryget()
     {    
-        $access_token = User::where('id', Auth::user()->id )->firstOrFail();
-        $access_token = $access_token->token;
-        $params = array('access_token' => $access_token);
-        $result = Meli::get('/users/me', $params, true); 
+        $mlUser = User::where('id', Auth::user()->id )->firstOrFail();
+        $access_token = $mlUser->token;
+        $user_id = $access_token->ml_id;
+    
+        $offset = 0;
+        $call= "/users/".$user_id."/items/search";
+        $result = Meli::get($call, ["offset"=>$offset, 'access_token'=>$access_token]);
         return view('home', ['result'=>$result]);
     }
 
