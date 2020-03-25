@@ -29,10 +29,10 @@ class AuthController extends Controller
         $meliUser = Socialite::driver('meli')->user();
         
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
-        
-        User::where('id', Auth::user()->id)
+        $currentUser = Auth::user()->id;
+        User::where('id', $currentUser)
               ->update(
-                  ['ml_id' => 1],
+                  ['ml_id' => $meliUser->id],
                   ['token' => $meliUser->token],
                   ['refresh_token' => $meliUser->refresh_token],
                   ['ml_nickname' => $meliUser->nickname],
