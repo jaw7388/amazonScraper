@@ -52,7 +52,7 @@ class AuthController extends Controller
         $mlUser['name'] = $meliUser->name;
         $mlUser['email'] = $meliUser->email;
         $mlUser['avatar'] = $meliUser->avatar;
-        //dd($meliUser);
+        dd($meliUser);
         // echo "<pre>";
         // print_r($mlUser);
         //Auth::login($meliUser, true);
@@ -60,7 +60,12 @@ class AuthController extends Controller
         //return view('home', ['token' => $token, 'refresh_token' => 'refresh_token', 'expires_at' => 'expires_at']);
     }  //
 
+    public function queryget()
+    {    
+        $access_token = User::where('id', Auth::user()->id )->firstOrFail();
+        $params = array('access_token' => $access_token->token);
+        $result = Meli::get('/users/me', $params, true); 
+        return view('home', $result);
+    }
 
 }
-
-

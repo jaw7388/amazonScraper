@@ -24,3 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/meli', 'AuthController@redirectToProvider');
 Route::get('auth/meli/callback', 'AuthController@handleProviderCallback');
 
+Route::get('meli/get', 'AuthController@queryget');
