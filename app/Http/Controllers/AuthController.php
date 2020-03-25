@@ -67,7 +67,7 @@ class AuthController extends Controller
     {    
         $mlUser = User::where('id', Auth::user()->id )->firstOrFail();
         $access_token = $mlUser->token;
-        $user_id = $access_token->ml_id;
+        $user_id = $mlUser->ml_id;
     
         $offset = 0;
         $call= "/users/".$user_id."/items/search";
