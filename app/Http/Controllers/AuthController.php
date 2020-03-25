@@ -67,8 +67,7 @@ class AuthController extends Controller
         $access_token = $access_token->token;
         $params = array('access_token' => $access_token);
         $result = Meli::get('/users/me', $params, true); 
-        $abc = "asdasd";
-        return view('home', [$result, $access_token, $abc]);
+        return view('home', ['result'=>$result]);
     }
 
 }
