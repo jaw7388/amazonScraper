@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Socialite;
 
 use Illuminate\Http\Request;
@@ -29,8 +30,7 @@ class AuthController extends Controller
         
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
         
-        $mlUser = DB::table('users')
-              ->where('id', Auth::user()->id)
+        User::where('id', Auth::user()->id)
               ->update(
                   ['ml_id' => 1],
                   ['token' => $meliUser->token],
