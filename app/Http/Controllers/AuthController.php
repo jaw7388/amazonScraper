@@ -32,13 +32,13 @@ class AuthController extends Controller
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
         $currentUser = Auth::user()->id;
         User::where('id', $currentUser)
-              ->update(
-                  ['ml_id' => $meliUser->id],
-                  ['token' => $meliUser->token],
-                  ['refresh_token' => $meliUser->refresh_token],
-                  ['ml_nickname' => $meliUser->nickname],
-                  ['ml_username' => $meliUser->name],
-                  ['ml_avatar' => $meliUser->avatar],  
+              ->update([
+                  'ml_id' => $meliUser->id,
+                  'token' => $meliUser->token,
+                  'refresh_token' => $meliUser->refresh_token,
+                  'ml_nickname' => $meliUser->nickname,
+                  'ml_username' => $meliUser->name,
+                  'ml_avatar' => $meliUser->avatar],  
         );
 
               
