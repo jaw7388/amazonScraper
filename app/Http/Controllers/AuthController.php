@@ -15,12 +15,13 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
 
-        $this->currentUser = Auth::user()->id;
-        $this->mlUser = User::where('id', $this->currentUser )->firstOrFail();
-        $this->access_token = $this->mlUser->token;
-        $this->user_id = $this->mlUser->ml_id;
+        // $this->currentUser = Auth::user()->id;
+        
+        // $this->mlUser = User::where('id', $this->currentUser )->firstOrFail();
+        // $this->access_token = $this->mlUser->token;
+        // $this->user_id = $this->mlUser->ml_id;
     }
 
 
@@ -42,9 +43,8 @@ class AuthController extends Controller
      public function handleProviderCallback()
     {
         $meliUser = Socialite::driver('meli')->user();
-        
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
-        User::where('id', $this->user_id)
+        User::where('id', Auth::user()->id)
               ->update([
                   'ml_id' => $meliUser->id,
                   'token' => $meliUser->token,
