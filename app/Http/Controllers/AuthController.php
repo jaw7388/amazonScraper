@@ -56,9 +56,7 @@ class AuthController extends Controller
                 'ml_username' => $meliUser->name,
                 'ml_avatar' => $meliUser->avatar],  
         );
-
-              
-
+        return view('home');
         // $mlUser['expires_at'] = $meliUser->expires_at;
         // $mlUser['token'] = $meliUser->token;
         // $mlUser['refresh_token'] = $meliUser->refresh_token;
