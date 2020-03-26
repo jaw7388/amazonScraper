@@ -6,9 +6,9 @@
     <pre>
     {{ Auth::user()->id ?? '' }}
     
-    @if($result)
+    @isset($result)
         {{ print_r($result) }}    
-    @endif
-    
+    @endisset
+
     </pre>
 @endsection
