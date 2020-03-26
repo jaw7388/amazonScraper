@@ -24,6 +24,7 @@ class User extends Authenticatable
         'ml_nickname',
         'ml_username',
         'ml_avatar',
+        'expires_at',
     ];
 
     /**
