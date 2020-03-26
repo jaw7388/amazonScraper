@@ -15,10 +15,9 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
 
-        $this->currentUser = Auth::id();
-        echo $this->currentUser;
+        $this->currentUser = Auth::user()->id;
         $this->mlUser = User::where('id', $this->currentUser )->firstOrFail();
         $this->access_token = $this->mlUser->token;
         $this->user_id = $this->mlUser->ml_id;
