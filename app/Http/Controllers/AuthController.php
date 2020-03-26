@@ -3,21 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Socialite;
-use Auth;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 use Kolovious\MeliSocialite\Facade\Meli;
 
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    
 
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->currentUser = Auth::user()->id;
+        
+        $this->mlUser = User::where('id', $this->currentUser )->firstOrFail();
+        $this->access_token = $this->mlUser->token;
+        $this->user_id = $this->mlUser->ml_id;
     }
-    
-  /**
+
+
+     /**
      * Redirect the user to the Meli authentication page.
      *
      * @return Response
@@ -27,18 +35,17 @@ class AuthController extends Controller
         return Socialite::driver('meli')->redirect();
     }
 
+    
     /**
      * Obtain the user information from Meli.
-     *
      * @return Response
      */
-    public function handleProviderCallback()
+     public function handleProviderCallback()
     {
         $meliUser = Socialite::driver('meli')->user();
         
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
-        $currentUser = Auth::user()->id;
-        User::where('id', $currentUser)
+        User::where('id', $this->user_id)
               ->update([
                   'ml_id' => $meliUser->id,
                   'token' => $meliUser->token,
@@ -50,16 +57,16 @@ class AuthController extends Controller
 
               
 
-        $mlUser['expires_at'] = $meliUser->expires_at;
-        $mlUser['token'] = $meliUser->token;
-        $mlUser['refresh_token'] = $meliUser->refresh_token;
-        $mlUser['expires_at'] = $meliUser->expires_at;
-        $mlUser['id'] = $meliUser->id;
-        $mlUser['nickname'] = $meliUser->nickname;
-        $mlUser['name'] = $meliUser->name;
-        $mlUser['email'] = $meliUser->email;
-        $mlUser['avatar'] = $meliUser->avatar;
-        dd($meliUser);
+        // $mlUser['expires_at'] = $meliUser->expires_at;
+        // $mlUser['token'] = $meliUser->token;
+        // $mlUser['refresh_token'] = $meliUser->refresh_token;
+        // $mlUser['expires_at'] = $meliUser->expires_at;
+        // $mlUser['id'] = $meliUser->id;
+        // $mlUser['nickname'] = $meliUser->nickname;
+        // $mlUser['name'] = $meliUser->name;
+        // $mlUser['email'] = $meliUser->email;
+        // $mlUser['avatar'] = $meliUser->avatar;
+        // dd($meliUser);
         // echo "<pre>";
         // print_r($mlUser);
         //Auth::login($meliUser, true);
