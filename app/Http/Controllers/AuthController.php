@@ -68,7 +68,7 @@ class AuthController extends Controller
         // $mlUser['name'] = $meliUser->name;
         // $mlUser['email'] = $meliUser->email;
         // $mlUser['avatar'] = $meliUser->avatar;
-        // dd($meliUser);
+        dd($meliUser);
         // echo "<pre>";
         // print_r($mlUser);
         //Auth::login($meliUser, true);
