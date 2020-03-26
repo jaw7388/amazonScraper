@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Laravel\Socialite\Facades\Socialite;
-//use Auth;
+use Auth;
 use Kolovious\MeliSocialite\Facade\Meli;
 
 use Illuminate\Http\Request;
