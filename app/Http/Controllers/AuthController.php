@@ -17,9 +17,15 @@ class AuthController extends Controller
     {
         $this->middleware('auth');
 
-        $mlUser = User::where('id', Auth::user()->id )->firstOrFail();
-        $access_token = $mlUser->token;
-        $user_id = $this->mlUser->ml_id;
+        $this->middleware(function ($request, $next) {
+            $this->currentUser = Auth::user()->id;
+        
+            return $next($request);
+        });
+
+        // $mlUser = User::where('id', Auth::user()->id )->firstOrFail();
+        // $access_token = $mlUser->token;
+        // $user_id = $this->mlUser->ml_id;
 
     }
 
