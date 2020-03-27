@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@profile');
 
 Route::get('auth/meli', 'AuthController@redirectToProvider');
 Route::get('auth/meli/callback', 'AuthController@handleProviderCallback');
