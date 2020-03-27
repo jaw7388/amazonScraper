@@ -236,11 +236,11 @@ return [
             'key'         => 'main',
             'text'        => 'Principal',
             'url'         => 'home',
-            'icon'        => 'fas fa-home-heart',
+            'icon'        => 'fas fa-house-user',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
-
+        
         'CONFIGURACION DE LA CUENTA',
         
         [
@@ -248,7 +248,7 @@ return [
         ],
         [
             'text'    => 'multilevel',
-            'icon'    => 'fas fa-house-user',
+            'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
                     'text' => 'level_one',
