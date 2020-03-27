@@ -235,7 +235,7 @@ return [
         [   
             'key'         => 'main',
             'text'        => 'Principal',
-            'url'         => 'admin/pages',
+            'url'         => 'home',
             'icon'        => 'fas fa-home-heart',
             // 'label'       => 4,
             // 'label_color' => 'success',
@@ -346,7 +346,7 @@ return [
     //         'text'       => 'information',
     //         'icon_color' => 'aqua',
     //     ],
-    // ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
