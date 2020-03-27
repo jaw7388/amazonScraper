@@ -248,7 +248,7 @@ return [
         ],
         [
             'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-house-user',
             'submenu' => [
                 [
                     'text' => 'level_one',
