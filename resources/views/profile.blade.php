@@ -1,5 +1,5 @@
-@extends('adminlte::page')
-
+@extends('layouts.app')
+{{-- 
 @section('content')
 
     <h1>Profile</h1>
@@ -14,4 +14,4 @@
     @endisset
     
     </pre>
-@endsection
+@endsection --}}
