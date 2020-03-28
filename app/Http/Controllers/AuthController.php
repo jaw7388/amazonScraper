@@ -47,6 +47,10 @@ class AuthController extends Controller
     {
         $meliUser = Socialite::driver('meli')->user();
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
+        $avatar = $meliUser->user;
+        $avatar = $avatar['thumbnail'];
+        $avatar = $avatar['picture_url'];
+
         User::where('id', $this->currentUser)
               ->update([
                 'ml_id' => $meliUser->id,
@@ -54,11 +58,10 @@ class AuthController extends Controller
                 'refresh_token' => $meliUser->refresh_token,
                 'ml_nickname' => $meliUser->nickname,
                 'ml_username' => $meliUser->name,
-                'ml_avatar' => $meliUser->avatar,
+                'ml_avatar' => $avatar,
                 'expires_at' => $meliUser->expires_at],  
         );
-        $avatar = $meliUser->user;
-        $avatar = $avatar['thumbnail'];
+
         return view('home', [ 'avatar'=>$avatar]);
         // $mlUser['expires_at'] = $meliUser->expires_at;
         // $mlUser['token'] = $meliUser->token;
