@@ -12,6 +12,8 @@
     @isset($meliUser)
         {{ print_r($meliUser) }}    
     @endisset
-    
+    @isset($avatar)
+        {{ print_r($avatar) }}    
+    @endisset
     </pre>
 @endsection
