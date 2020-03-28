@@ -94,7 +94,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
  
-          <li class="nav-item">
+               <li class="nav-item">
+                <a href="{{ route('meli/get') }}" class="nav-link">
+                  <i class="fas fa-sliders-h"></i>
+                  <p>
+                    GET
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('auth/meli') }}" class="nav-link">
+                  <i class="fas fa-sliders-h"></i>
+                  <p>
+                    AUTH
+                  </p>
+                </a>
+              </li>
+          
+          
+          
+          
+               <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-home"></i>
               <p>
@@ -122,21 +143,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                <a href="{{ route('publicar/buscar') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle text-info"></i>
+                  <p>Buscar y publicar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                <a href="{{ route('publicar/masivo') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle text-danger"></i>
+                  <p>Masivo</p>
                 </a>
               </li>
             </ul>
