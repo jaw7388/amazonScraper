@@ -19,7 +19,6 @@ class AppServiceProvider extends ServiceProvider
         //     $this->app['request']->server->set('HTTPS', true);
         // }
     }
-
     /**
      * Bootstrap any application services.
      *
