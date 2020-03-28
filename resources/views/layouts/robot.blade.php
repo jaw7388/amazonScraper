@@ -81,7 +81,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ Auth::user()->ml_avatar }}" class="img-circle elevation-2" alt="User Image">
+          
+          @if(Auth::user()->ml_avatar)
+            <img src="{{ Auth::user()->ml_avatar }}" class="img-circle elevation-2" alt="User Image">
+          @else
+            <img src="{{ asset('dist/img/AdminLTELogo.png') }}" class="img-circle elevation-2" alt="User Image">
+          @endif
+          
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>

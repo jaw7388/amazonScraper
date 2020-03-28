@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['middleware' => ['cors']], function () {
+Route::group(['middleware' => ['cors']], function () {
     //Rutas a las que se permitirá acceso
 
     Auth::routes();
@@ -35,5 +36,4 @@ use Illuminate\Support\Facades\Route;
     Route::get('publicar/masivo', ['as' => 'publicar/masivo','uses'=>'HomeController@index']);
 
 
-//});
-
+});
