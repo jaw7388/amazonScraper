@@ -54,7 +54,7 @@ class AuthController extends Controller
                 'refresh_token' => $meliUser->refresh_token,
                 'ml_nickname' => $meliUser->nickname,
                 'ml_username' => $meliUser->name,
-                'ml_avatar' => $meliUser->user,
+                'ml_avatar' => $meliUser->avatar,
                 'expires_at' => $meliUser->expires_at],  
         );
         return view('home', ['meliUser'=>$meliUser]);
