@@ -63,16 +63,6 @@ class AuthController extends Controller
         );
 
         return view('home', [ 'avatar'=>$avatar]);
-        // $mlUser['expires_at'] = $meliUser->expires_at;
-        // $mlUser['token'] = $meliUser->token;
-        // $mlUser['refresh_token'] = $meliUser->refresh_token;
-        // $mlUser['expires_at'] = $meliUser->expires_at;
-        // $mlUser['id'] = $meliUser->id;
-        // $mlUser['nickname'] = $meliUser->nickname;
-        // $mlUser['name'] = $meliUser->name;
-        // $mlUser['email'] = $meliUser->email;
-        // $mlUser['avatar'] = $meliUser->avatar;
-        //dd($meliUser);
     }  
 
     public function queryget()
