@@ -178,6 +178,7 @@ return [
         // Other service providers...
         Laravel\Socialite\SocialiteServiceProvider::class,
         App\Providers\MeliSocialiteServiceProvider::class,
+        App\Providers\AmazonServiceProvider::class,
 
     ],
 

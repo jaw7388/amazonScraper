@@ -32,7 +32,7 @@ Route::group(['middleware' => ['cors']], function () {
     // Route::get('/publicar/buscar', 'HomeController@index');
     // Route::get('/publicar/masivo', 'HomeController@index');
 
-    Route::get('publicar/buscar', ['as' => 'publicar/buscar','uses'=>'HomeController@index']);
+    Route::get('publicar/buscar', ['as' => 'publicar/buscar','uses'=>'PostController@create']);
     Route::get('publicar/masivo', ['as' => 'publicar/masivo','uses'=>'HomeController@index']);
 
 
