@@ -1,7 +1,7 @@
 <?php
 namespace App\Amazon;
-use tidy;
 
+use tidy;
 class XPATH{
 
 	public $dom, $xpath;
@@ -28,23 +28,44 @@ class XPATH{
 		}
 		if (isset($array)) {
 			$html = implode($array);
-			
+			$head = "<!DOCTYPE html> <html><head><title></title></head><body>";
+			$foot = "</body></html>";
+			$html = $head . $html . $foot;
+			//$processed = HTMLAWED::htmLawed($html);
+
 			$tidy = new Tidy();
 			$tidy->parseString($html);
 			$tidy->cleanRepair();
-			$tidy = $tidy->value;
-			$tidy = preg_replace('/\n+/', " ", $tidy);
+			// $html = $tidy->value;
+			//$html = preg_replace('/\n+/', " ", $html);
+			//$html = preg_replace('/[\\\]/', "", $html);
 			$dom = new \DOMDocument();
 			$dom->preserveWhiteSpace = FALSE;
-			@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $tidy);
+			$dom->formatOutput = true;
+			$dom->saveHTML();
+			
+			@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+			
 			$xpath = new \DOMXpath($dom);
 			//("//tr[contains(.,'envío')]//td");
 			// innermost(//*[contains(normalize-space(.), "some text")])
-			$peso = $xpath->query("(//table[contains(normalize-space(.),'Peso del env')])[1]"); 
-			$peso = implode($this::xpathToArray($peso));
-			preg_match_all("/envío\s*\n*(\d+\.*\,*\d*)\s*\n*(\w+)/", $peso, $match);
+			// (//table[contains(normalize-space(.),'Peso del env')])[1]
+
+			// $peso = $xpath->query("(//table)"); 
+			// $peso = $this::xpathToArray($peso);
+			//Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*[\w]+
+			//preg_match_all("/envío\s*\n*(\d+\.*\,*\d*)\s*\n*(\w+)/", $html, $match);
+			// Dimensiones del producto\s*[^\d]+[^\<]+
+			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $html, $peso);
+			preg_match_all("/Dimensiones\s*[^\d]+([^\<]+)/", $html, $dimensiones);
+			$result  = array(implode(array_unique($dimensiones[1])), implode(array_unique($peso[1])), implode(array_unique($peso[2])));
 			
-			return $match;
+			if (implode($result)) {
+				return $result;
+			}else{
+				return 0;
+			}
+			//return array_unique($peso[1]);
 		}else{
 			return;
 		}

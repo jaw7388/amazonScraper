@@ -8,8 +8,9 @@ class PostController extends Controller
 {
     public function create()
     {
-        $array = new CREATE('B07FVPR6ZF');
-        $array = $array->typeOfItem();
-        return view('singleproduct', ['array'=>$array]);
+        // $array = new CREATE('B07NBZZFD5');
+        // $array = $array->typeOfItem();
+        // return view('singleproduct', ['array'=>$array]);
+        return view('singleproduct');
     }
 }

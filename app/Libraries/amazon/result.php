@@ -73,11 +73,11 @@ class CREATE{
 		//Price Amazon "//span[@id='priceblock_saleprice']"
 		//Brand Amazon "//a[@id='bylineInfo']"
 		//BREADCRUMB Amazon "//div[@id='wayfinding-breadcrumbs_container']//a"
-
 		//Get ASIN list items of search reslt Amazon "//li[@class='s-result-item  celwidget  ']/@data-asin|//div[@class[contains(.,'s-result-item')]]/@data-asin"
-
+		// $x("//div[@id[contains(.,'descriptionAndDetails')]]")
 		// ************* XPATH QUERIES *************
 		
+		$spechTablesQuery = "//div[@id[contains(.,'descriptionAndDetails')]]";
 		$titleQuery = "//span[@id='productTitle']";
 		$imgQuery = "//script[contains(.,'ImageBlockATF')]";
 		$descriptionQuery = "//div[@id='feature-bullets']/ul/li/span[not(contains(.,'Asegúrate de que esto coincide'))]";
@@ -87,6 +87,7 @@ class CREATE{
 		$breadcrumbQuery = "//div[@id='wayfinding-breadcrumbs_container']//a";
 		$listAsinQuery = "//li[@class='s-result-item  celwidget  ']/@data-asin|//div[@class[contains(.,'s-result-item')]]/@data-asin";	
 		
+		$spechTablesXpath = $this->xpath->query($spechTablesQuery);
 		$titleXpath = $this->xpath->query($titleQuery);
 		
 		$imagesXpath = $this->xpath->query($imgQuery);
@@ -96,6 +97,7 @@ class CREATE{
 		$brandXpath = $this->xpath->query($brandQuery);
 		$breadcrumbXpath = $this->xpath->query($breadcrumbQuery);
 		$listAsinXpath = $this->xpath->query($listAsinQuery);
+
 
 		
 		// ************* RESULTS *************
@@ -110,8 +112,17 @@ class CREATE{
 		$brand = $this->xpath->title($brandXpath);//Brand string
 		$breadcrumb = $this->xpath->xpathToArray($breadcrumbXpath);//Bcrumb string
 
-		$spechTables = $this->xpath->spechTables();
-
+		//SPECH DATA
+//		$spechTables = $this->xpath->spechTables();
+		if (!$this->xpath->spechTables()) {
+			$spechTables = $this->xpath->xpathToArray($spechTablesXpath);
+		}else{
+			$spechTables = $this->xpath->spechTables();
+		}
+		
+		//$spechTables = $this->xpath->xpathToArray($spechTablesXpath); 
+		
+		
 		//Configuracion de la descripcion/////////////////////////////////////
 		if(sizeof($descriptionXpath) > 0){
 			$description = $this->xpath->description($descriptionXpath);//Description string with \n
@@ -166,7 +177,8 @@ class CREATE{
 			$product["description"] = $descriptionArr;
 			$product["price"] = $price;
 			$product["brand"] = $brand;
-			$product["images"] = json_encode($imageArr);
+			$product["images"] = $imageArr;
+			$product["json_images"] = json_encode($imageArr);
 			$product["categoryName"] = $categoryName;
 			$product["categoryID"] = $categoryID;
 			$product['spechTables'] = $spechTables;
