@@ -72,4 +72,8 @@ class AuthController extends Controller
         $result = Meli::get($call, ["offset"=>$offset, 'access_token'=>$this->access_token]);
         return view('home', ['result'=>$result]);
     }
+
+    public function settings(){
+        return view('settings');
+    }
 }

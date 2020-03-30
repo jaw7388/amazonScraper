@@ -1,17 +1,31 @@
 
-// jQuery, bind an event handler or use some other way to trigger ajax call.
-$('form').submit(function( event ) {
-    event.preventDefault();
-    $.ajax({
-        url: 'http://myserver.dev/myAjaxCallURI',
-        type: 'post',
-        data: $('form').serialize(), // Remember that you need to have your csrf token included
-        dataType: 'json',
-        success: function( _response ){
-            // Handle your response..
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+})
+
+$(document).ready(function() {
+    $("#search").click(function() {
+        
+    $.ajax( {
+        // headers: {
+        //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        // },
+        url:'test',
+        method:'POST',
+        data: {
+            sku: $("#sku").val()
         },
-        error: function( _response ){
-            // Handle error
-        }
-    });
-});
+        
+        success: function( bolUpdated ) { 
+            if( bolUpdated ) { 
+                console.log(bolUpdated);
+            }   
+        },  
+        fail: function() {
+            alert('NO');
+        }   
+    }); 
+    })
+})

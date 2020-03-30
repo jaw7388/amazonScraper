@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Buscar y Publicar</h1>
+            <h1>Publicación Masiva</h1>
         </div>
       </div>
     </div>
@@ -31,9 +31,9 @@
                 <div class="row">
                     <div class="col-md-4 offset-md-4">
                         <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="sku" id="sku">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                             <div class="input-group-append">
-                              <button class="btn btn-info btn-flat" type="button" name="search" id="search">
+                              <button class="btn btn-info btn-flat" type="button">
                                 <i class="fas fa-search"></i> Buscar
                               </button>
                             </div>

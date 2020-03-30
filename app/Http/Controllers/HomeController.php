@@ -30,5 +30,29 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+    
+    public function settings()
+    {
+        // $array = new CREATE('B07NBZZFD5');
+        // $array = $array->typeOfItem();
+        // return view('singleproduct', ['array'=>$array]);
+        return view('settings');
+    }
+
+    public function singleProduct()
+    {
+        // $array = new CREATE('B07NBZZFD5');
+        // $array = $array->typeOfItem();
+        // return view('singleproduct', ['array'=>$array]);
+        return view('singleproduct');
+    }
+
+    public function massiveProduct()
+    {
+        // $array = new CREATE('B07NBZZFD5');
+        // $array = $array->typeOfItem();
+        // return view('singleproduct', ['array'=>$array]);
+        return view('massiveproduct');
+    }    
 
 }

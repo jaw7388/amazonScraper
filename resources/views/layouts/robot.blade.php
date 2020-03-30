@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>AMELI</title>
 
@@ -90,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
         </div>
         <div class="info">
-          <a href="{{ route('home') }}" class="d-block">{{ auth()->user()->name }}</a>
+          <a href="{{ route('profile') }}" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
@@ -131,8 +132,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-sliders-h"></i>
+            <a href="{{ route('settings') }}" class="nav-link">
+              <i class="fas fa-cog"></i>
               <p>
                 Configuración
               </p>
@@ -149,13 +150,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('publicar/buscar') }}" class="nav-link">
+                <a href="{{ route('singleproduct') }}" class="nav-link">
                   <i class="nav-icon far fa-circle text-info"></i>
                   <p>Buscar y publicar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('publicar/masivo') }}" class="nav-link">
+                <a href="{{ route('massiveproduct') }}" class="nav-link">
                   <i class="nav-icon far fa-circle text-danger"></i>
                   <p>Masivo</p>
                 </a>
@@ -228,6 +229,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- AdminLTE App -->
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
