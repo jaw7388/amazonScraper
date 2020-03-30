@@ -7,7 +7,7 @@ $.ajaxSetup({
 
 $(document).ready(function() {
     $("#search").click(function() {
-        
+    e.preventDefault();    
     $.ajax( {
         // headers: {
         //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
