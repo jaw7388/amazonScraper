@@ -43,7 +43,10 @@
                 </div>
 
                 <div class="row">
-                    <div id="array"></div>
+                    <div class="col-12">
+                        <div id="array"></div>
+                    </div>
+                    
                 </div>
 
                 <pre>
