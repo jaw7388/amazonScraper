@@ -18,9 +18,11 @@ $(document).ready(function() {
             sku: $("#sku").val()
         },
         
-        success: function( bolUpdated ) { 
-            if( bolUpdated ) { 
-                console.log(bolUpdated);
+        success: function( response ) { 
+            if( response ) { 
+                array = JSON.stringify(response.sku,undefined, 2);
+                $('#array').html('<pre>' + array);
+                console.log(response.sku);
             }   
         },  
         fail: function() {

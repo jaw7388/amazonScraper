@@ -42,6 +42,10 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div id="array"></div>
+                </div>
+
                 <pre>
                     @isset($array)
                         {{ print_r($array) }}
