@@ -23,26 +23,7 @@
                     Aca podras ingresar un numero de SKU-ASIN para ver la información del articulo.
                 </div>
                 
-                <div class="row justify-content-center">
-                    <div class="text-center">
-                        <img src="https://logosmarcas.com/wp-content/uploads/2018/05/Amazon-Logo.png" alt="" style="max-width:30%">
-                        
-                    </div>
-                </div>
                 
-                <div class="row">
-                    <div class="col-md-4 offset-md-4">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                              <button class="btn btn-info btn-flat" type="button">
-                                <i class="fas fa-search"></i> Buscar
-                              </button>
-                            </div>
-                          </div>
-                          <p class="text-center text-primary">Introduce un codigo SKU-ASIN valido</p>
-                    </div>
-                </div>
 
                 <pre>
                     @isset($array)
@@ -55,23 +36,4 @@
     </div>
 </section>
 
-
-
-
-
-
-<h1>Hola</h1>
-    <pre>
-    {{ Auth::user()->id ?? '' }}
-    
-    @isset($result)
-        {{ print_r($result) }}    
-    @endisset
-    @isset($meliUser)
-        {{ print_r($meliUser) }}    
-    @endisset
-    @isset($avatar)
-        {{ print_r($avatar) }}    
-    @endisset
-    </pre>
 @endsection

@@ -48,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <span class="dropdown-header">{{ auth()->user()->name }}</span>
           <div class="dropdown-divider"></div>
           
-          <a href="#" class="dropdown-item dropdown-footer">
+          <a href="{{ route('profile') }}" class="dropdown-item dropdown-footer">
             <i class="fas fa-user"></i> Mis datos
           </a>
           <div class="dropdown-divider"></div>
@@ -100,29 +100,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
- 
-               <li class="nav-item">
-                <a href="{{ route('meli/get') }}" class="nav-link">
-                  <i class="fas fa-sliders-h"></i>
-                  <p>
-                    GET
-                  </p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                <a href="{{ route('auth/meli') }}" class="nav-link">
-                  <i class="fas fa-sliders-h"></i>
-                  <p>
-                    AUTH
-                  </p>
-                </a>
-              </li>
-          
-          
-          
-          
-               <li class="nav-item">
+          <li class="nav-item">
             <a href="{{ route('home') }}" class="nav-link">
               <i class="fas fa-home"></i>
               <p>
@@ -163,6 +142,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+
+
+          <li class="nav-item">
+            <a href="{{ route('meli/get') }}" class="nav-link">
+              <i class="fas fa-sliders-h"></i>
+              <p>
+                GET
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('auth/meli') }}" class="nav-link">
+              <i class="fas fa-sliders-h"></i>
+              <p>
+                AUTH
+              </p>
+            </a>
+          </li>
+
 
         </ul>
       </nav>
