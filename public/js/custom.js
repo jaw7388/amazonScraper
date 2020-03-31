@@ -12,7 +12,7 @@ $(document).ready(function() {
         // headers: {
         //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         // },
-        url:'test',
+        url:'search/one',
         method:'POST',
         data: {
             sku: $("#sku").val()

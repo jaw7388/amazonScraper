@@ -12,14 +12,6 @@ class PostController extends Controller
         $array = new CREATE($sku);
         $array = $array->typeOfItem();
         return response()->json( ['sku'=>$array] );
-        
-        
-        //$array = $request->sku;
-        //$sku = $request->sku;
-        //$array = array('name'=>'john', 'dni'=> 22323, 'apellido'=>'ortiz');
-        //return view('singleproduct', ['array'=> $array]);
-        //return redirect()->route('singleproduct', ['array'=> $array]);
-
     }
     
 }

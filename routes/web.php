@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('auth/meli/callback', ['as' => 'auth/meli/callback','uses'=>'AuthController@handleProviderCallback']);
     Route::get('meli/get', ['as' => 'meli/get','uses'=>'AuthController@queryget']);
 
-    Route::post('test', 'PostController@singleProduct')->name('test');
+    Route::post('search/one', 'PostController@singleProduct')->name('search/one');
     
     
 

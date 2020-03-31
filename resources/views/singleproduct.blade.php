@@ -43,22 +43,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 offset-md-4">
-                        <div class="input-group input-group-sm">
-                        <form method="POST" action="{{ action('PostController@singleProduct') }}">
-                            @csrf
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="sku" id="sku">
-                              <button class="btn btn-info btn-flat" type="submit">
-                                <i class="fas fa-search"></i> Buscar
-                              </button>
-                        </form>
-                        </div>
-                        
-                          <p class="text-center text-primary">Introduce un codigo SKU-ASIN valido</p>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="col-12">
                         <div id="array"></div>
                     </div>
