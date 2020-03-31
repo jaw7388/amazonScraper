@@ -1,7 +1,7 @@
 <?php
 namespace App\Amazon;
 
-use tidy;
+//use tidy;
 class XPATH{
 
 	public $dom, $xpath;
@@ -33,9 +33,9 @@ class XPATH{
 			$html = $head . $html . $foot;
 			//$processed = HTMLAWED::htmLawed($html);
 
-			$tidy = new Tidy();
-			$tidy->parseString($html);
-			$tidy->cleanRepair();
+			// $tidy = new Tidy();
+			// $tidy->parseString($html);
+			// $tidy->cleanRepair();
 			// $html = $tidy->value;
 			//$html = preg_replace('/\n+/', " ", $html);
 			//$html = preg_replace('/[\\\]/', "", $html);
