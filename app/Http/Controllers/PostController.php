@@ -7,14 +7,19 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function singleProduct(Request $request){
+        
         $sku = $request->sku;
         $array = new CREATE($sku);
         $array = $array->typeOfItem();
-        //$array = array('sku'=>"hola", 'hola'=>"hello");
+        //return response()->json( ['sku'=>$array] );
+        
+        
+        //$array = $request->sku;
         //$sku = $request->sku;
-//    $array = array('name'=>'john', 'dni'=> 22323, 'apellido'=>'ortiz');
-        //return view('singleproduct', ['array'=> $array]);
-        return response()->json( ['sku'=>$array] );
+        //$array = array('name'=>'john', 'dni'=> 22323, 'apellido'=>'ortiz');
+        return view('singleproduct', ['array'=> $array]);
+        //return redirect()->route('singleproduct', ['array'=> $array]);
+
     }
     
 }
