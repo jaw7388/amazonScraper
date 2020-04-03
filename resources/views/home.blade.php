@@ -22,8 +22,10 @@
                     <h5><i class="icon fas fa-info"></i>Busqueda manual</h5>
                     Aca podras ingresar un numero de SKU-ASIN para ver la información del articulo.
                 </div>
+                <div id="app">
+                    <example-component> </example-component>
+                </div>
                 
-
                 <pre>
                     @isset($array)
                         {{ print_r($array) }}
@@ -32,6 +34,8 @@
                 </pre>
             </div>
         </div>
+
+        
     </div>
 </section>
 

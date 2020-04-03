@@ -1,21 +1,93 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+<div class="container">
 
-                    <div class="card-body">
-                        I'm an example component.
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Buscar y Publicar</h1>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section>
+    <div class="card">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-info"></i>Busqueda manual</h5>
+                    Aca podras ingresar un numero de SKU-ASIN para ver la información del articulo.
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="text-center">
+                        <img src="https://logosmarcas.com/wp-content/uploads/2018/05/Amazon-Logo.png" alt="" style="max-width:30%">
+                        
                     </div>
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" v-model="sku"
+                            type="search" placeholder="Search" aria-label="Search" name="sku" id="sku">
+                            <div class="input-group-append">
+                              <button class="btn btn-info btn-flat" @click.prevent="search(sku)"
+                              type="button" name="search" id="search">
+                                <i class="fas fa-search"></i> Buscar
+                              </button>
+                            </div>
+                          </div>
+                          <p class="text-center text-primary">Introduce un codigo SKU-ASIN valido</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div id="array">
+                            {{array}}
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- <pre>
+                    @isset($array)
+                        {{ print_r($array) }}
+                    @endisset
+                
+                </pre> -->
             </div>
         </div>
+        
     </div>
+</section>
+
+</div>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+            sku :'',
+            array: []    
+            }
+        },
+        methods: {
+            search(sku){
+                axios.post('search/one', sku)
+                .then(res=>{
+                    this.array = res.sku
+                }).then(data => {
+                console.log(data)
+                .catch(error => {
+                console.log(error.response.data.error)
+                })
+            })
+        }},
         mounted() {
             console.log('Component mounted.')
         }
