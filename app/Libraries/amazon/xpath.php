@@ -28,9 +28,6 @@ class XPATH{
 		}
 		if (isset($array)) {
 			$html = implode($array);
-			$head = "<!DOCTYPE html> <html><head><title></title></head><body>";
-			$foot = "</body></html>";
-			$html = $head . $html . $foot;
 			//$processed = HTMLAWED::htmLawed($html);
 
 			// $tidy = new Tidy();
@@ -41,8 +38,6 @@ class XPATH{
 			//$html = preg_replace('/[\\\]/', "", $html);
 			$dom = new \DOMDocument();
 			$dom->preserveWhiteSpace = FALSE;
-			$dom->formatOutput = true;
-			$dom->saveHTML();
 			
 			@$dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 			
@@ -70,8 +65,6 @@ class XPATH{
 			return;
 		}
 	}
-		
-
 
 	public function query($q){
 		$result = $this->xpath->query($q);
@@ -164,9 +157,9 @@ class XPATH{
 		));
 		$result = curl_exec($ch);
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		 if($httpcode == "404"){
-		 	return 'error';
-		 	exit;
+		if($httpcode == "404"){
+			return ;
+			exit;
 		 }
 		if (!$result) {
 			echo "<pre>";

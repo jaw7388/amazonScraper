@@ -40,19 +40,27 @@
                               </button>
                             </div>
                           </div>
-                          <p class="text-center text-primary">Introduce un codigo SKU-ASIN valido</p>
+                          <p class="text-center text-primary">Introduce un codigo SKU-ASIN valido ok</p>
                     </div>
                 </div>
+           
 
                 <div class="row">
                     <div class="col-12">
                         <div id="array">
-                            {{array}}
+                            <pre>
+                                {{array}}
+                            </pre>
                         </div>
                     </div>
-                    
                 </div>
+                <div>
+                    <b-form-select v-model="selected" :options="options" :select-size="4"></b-form-select>
+                    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+                </div>
+                    
 
+               
                 <!-- <pre>
                     @isset($array)
                         {{ print_r($array) }}
@@ -72,24 +80,40 @@
     export default {
         data() {
             return {
-            sku :'',
-            array: []    
+                info: null,
+                sku :'',
+                array: [],
+                selected: ['b'],
+                options: [
+                    { value: null, text: 'Please select some item' },
+                    { value: 'a', text: 'This is option a' },
+                    { value: 'b', text: 'Default Selected Option b' },
+                    { value: 'c', text: 'This is option c' },
+                    { value: 'd', text: 'This one is disabled', disabled: true },
+                    { value: 'e', text: 'This is option e' },
+                    { value: 'e', text: 'This is option f' }
+                ]  
             }
         },
         methods: {
-            search(sku){
+            search(){
+                let sku = {sku: this.sku}
                 axios.post('search/one', sku)
                 .then(res=>{
-                    this.array = res.sku
-                }).then(data => {
-                console.log(data)
-                .catch(error => {
-                console.log(error.response.data.error)
+                    this.array = res.data.sku
+                }).catch(error => {
+                    console.log(error.response.data.error)
                 })
-            })
-        }},
+            }
+        },
+
         mounted() {
-            console.log('Component mounted.')
-        }
+            axios
+            .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+            .then(response => (this.info = response.data.bpi))
+            console.log(this.info)
+         }
+            
+        
     }
 </script>

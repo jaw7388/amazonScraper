@@ -28,28 +28,32 @@ class CREATE{
 	} 
 
 	public function typeOfItem(){
-
+		$htmlResponse = $this->xpath->html;
 		$pageTitleQuery = "//title";
 		$pageTitleXpath = $this->xpath->query($pageTitleQuery);
 		$pageTitleXpath = $this->xpath->xpathToArray($pageTitleXpath);//Title string
 
-		if(strpos($pageTitleXpath[0], "Music") == false){
-			return self::createItem();
-		} 
-		// If Product is CD || Vinyl
-		if(strpos($pageTitleXpath[0], "Music") == true){ 
-
-			$currentFormatQuery = "(//li[@class='swatchElement selected']/span//a)[1]";
-			$currentFormatXpath = $this->xpath->query($currentFormatQuery);
-			$currentFormat = $this->xpath->title($currentFormatXpath);
-			
-			if (strpos($currentFormat, "CD") !== false) {
-				self::createItemMusic("CD");
+		if ($htmlResponse !== null) {
+			if(strpos($pageTitleXpath[0], "Music") == false){
+				return self::createItem();
+			} 
+			// If Product is CD || Vinyl
+			if(strpos($pageTitleXpath[0], "Music") == true){ 
+	
+				$currentFormatQuery = "(//li[@class='swatchElement selected']/span//a)[1]";
+				$currentFormatXpath = $this->xpath->query($currentFormatQuery);
+				$currentFormat = $this->xpath->title($currentFormatXpath);
+				
+				if (strpos($currentFormat, "CD") !== false) {
+					self::createItemMusic("CD");
+				}
+				if (strpos($currentFormat, "Vinilo") !== false) {
+					self::createItemMusic("Vinilo");					
+				}
+	
 			}
-			if (strpos($currentFormat, "Vinilo") !== false) {
-				self::createItemMusic("Vinilo");					
-			}
-
+		}else{
+			return "Error";
 		}
 			//Current CD || Vinyl selected "//li[@class='swatchElement selected']/span[text()]"
 			//"(//li[@class='swatchElement unselected']/span//a[contains(.,'Vinilos')]/@href)"
@@ -116,6 +120,10 @@ class CREATE{
 //		$spechTables = $this->xpath->spechTables();
 		if (!$this->xpath->spechTables()) {
 			$spechTables = $this->xpath->xpathToArray($spechTablesXpath);
+			$spechTables = implode($spechTables);
+			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $spechTables, $peso);
+			preg_match_all("/Dimensiones\s*[^\d]+([^\<]+)/", $spechTables, $dimensiones);
+			$spechTables = $peso ;
 		}else{
 			$spechTables = $this->xpath->spechTables();
 		}
@@ -172,17 +180,17 @@ class CREATE{
 		// print_r($categoryml);
 
 		
-			$product["sku"] = $this->asin;
-			$product["title"] = $fixedTitle;
-			$product["description"] = $descriptionArr;
-			$product["price"] = $price;
-			$product["brand"] = $brand;
-			$product["images"] = $imageArr;
-			$product["json_images"] = json_encode($imageArr);
-			$product["categoryName"] = $categoryName;
-			$product["categoryID"] = $categoryID;
-			$product['spechTables'] = $spechTables;
-
+		$product["sku"] = $this->asin;
+		$product["title"] = $fixedTitle;
+		$product["description"] = $descriptionArr;
+		$product["price"] = $price;
+		$product["brand"] = $brand;
+		$product["images"] = $imageArr;
+		$product["json_images"] = json_encode($imageArr);
+		$product["categoryName"] = $categoryName;
+		$product["categoryID"] = $categoryID;
+		$product['spechTables'] = $spechTables;
+		
 		return $product;
 
 	}
@@ -211,33 +219,29 @@ class CREATE{
 
 		// ************* RESULTS ************* 
 		
-		
+		$title = $this->xpath->title($titleXpath);//Title string
+		$title = str_replace("&","",$title);
+		$author = $this->xpath->title($authorXpath);//Brand string
+		$images = $this->xpath->musicImages($imagesXpath);//Images (array)
+		$description = $this->xpath->description($descriptionXpath);//Description string with \n
+		$description = $this->tr->translate($description); 	
+		$price = $this->xpath->price($priceXpath);//Price string
+		$format = $format;
 
+		echo "<pre>";
+		print_r($title . " " . $format);
+		echo "<br>-------------------------------<br>";
+		print_r($images);
+		echo "<br>-------------------------------<br>";
+		echo $description;
+		echo "<br>-------------------------------<br>";
+		print_r($price);
+		echo "<br>-------------------------------<br>";
+		print_r($author);
+		echo "<br>-------------------------------<br>";
 
-
-			$title = $this->xpath->title($titleXpath);//Title string
-			$title = str_replace("&","",$title);
-			$author = $this->xpath->title($authorXpath);//Brand string
-			$images = $this->xpath->musicImages($imagesXpath);//Images (array)
-			$description = $this->xpath->description($descriptionXpath);//Description string with \n
-			$description = $this->tr->translate($description); 	
-			$price = $this->xpath->price($priceXpath);//Price string
-			$format = $format;
-
-			echo "<pre>";
-			print_r($title . " " . $format);
-			echo "<br>-------------------------------<br>";
-			print_r($images);
-			echo "<br>-------------------------------<br>";
-			echo $description;
-			echo "<br>-------------------------------<br>";
-			print_r($price);
-			echo "<br>-------------------------------<br>";
-			print_r($author);
-			echo "<br>-------------------------------<br>";
-
-			$categoryml = categoryML($title." cd");
-			print_r($categoryml->name);
+		$categoryml = categoryML($title." cd");
+		print_r($categoryml->name);
 
 		}
 	}		

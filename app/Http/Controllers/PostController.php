@@ -9,9 +9,10 @@ class PostController extends Controller
     public function singleProduct(Request $request){
         
         $sku = $request->sku;
-        $array = new CREATE($sku);
-        $array = $array->typeOfItem();
+         $array = new CREATE($sku);
+         $array = $array->typeOfItem();
         return response()->json( ['sku'=>$array] );
+        //return view('home', ['array'=>$array]);
     }
     
 }
