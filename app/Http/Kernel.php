@@ -24,7 +24,7 @@ class Kernel extends HttpKernel
         // appending custom middleware 
         \App\Http\Middleware\HttpsProtocol::class,
         \App\Http\Middleware\Cors::class,
-
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
