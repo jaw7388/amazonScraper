@@ -45,5 +45,18 @@ class PostController extends Controller
         return($response->getBody()->getContents());
     }
 
+    public function categoryAtributes($id){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'https://api.mercadolibre.com/categories/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+        // Create a client with a base URI
+        // Send a request to https://foo.com/api/test
+        $response = $client->request('GET', "{$id}/technical_specs/input");
+        return($response->getBody()->getContents());
+    }
+
     
 }

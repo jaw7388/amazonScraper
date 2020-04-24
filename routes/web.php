@@ -34,5 +34,6 @@ use Illuminate\Support\Facades\Route;
     
     Route::get('mlCategories', 'PostController@mlCategories')->name('mlCategories');
     Route::get('mlcategory/{id}', 'PostController@category')->name('mlcategory');
-
+    Route::get('categoryatributes/{id}', 'PostController@categoryAtributes')->name('categoryatributes');
+    
 //});

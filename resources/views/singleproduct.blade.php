@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="app">
-    <example-component/>
+    <singlesearch-component />
     
 </div>
 

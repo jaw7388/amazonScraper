@@ -177,7 +177,9 @@ class XPATH{
 }
 
 function categoryML($title){
-	$categoryUrl = 'https://api.mercadolibre.com/sites/MCO/category_predictor/predict?title='.$title;
+	$title = rawurlencode($title);
+	//$categoryUrl = 'https://api.mercadolibre.com/sites/MCO/category_predictor/predict?title='.$title;
+	$categoryUrl = 'https://api.mercadolibre.com/sites/MCO/domain_discovery/search?q='.$title;
 	$categoryUrl = preg_replace("/\s+|\&/", "%20", $categoryUrl);
 	// Get cURL resource
 	$curl = curl_init();
@@ -196,8 +198,12 @@ function categoryML($title){
 	));
 	// Send the request & save response to $resp
 	$resp = curl_exec($curl);
+	if (curl_errno($curl)) {
+    $error_msg = curl_error($curl);
+}
 	// Close request to clear up some resources
 	curl_close($curl);
 	$resp = json_decode($resp);
-	return $resp;
+	return $resp[0];
+	//print_r($resp->category_name);
 }

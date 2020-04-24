@@ -10,6 +10,15 @@ Vue.use(IconsPlugin)
 
 /******************************************************************* */
 
+//support vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+import storeData from "./store/index"
+
+const store = new Vuex.Store(
+   storeData
+)
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -31,7 +40,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('singlesearch-component', require('./components/SingleSearchComponent.vue').default);
+Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);
+Vue.component('categoryatributes-component', require('./components/CategoryAttributesComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,4 +53,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    store,
+
 });

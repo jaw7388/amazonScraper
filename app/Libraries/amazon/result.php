@@ -23,7 +23,9 @@ class CREATE{
 	
 		$this->asin = $asin;
 		$this->startUrl = "https://www.amazon.com/-/es/dp/" . $this->asin;
+		$this->priceUrl = "https://www.amazon.com/s?k=" . $this->asin;
 		$this->xpath = new XPATH($this->startUrl);
+		$this->priceXpath = new XPATH($this->priceUrl);
 		
 	} 
 
@@ -75,6 +77,7 @@ class CREATE{
 		//Secondary Description Amazon "//div[@id='productDescription']//p"
 		//Price Amazon "//span[@id='priceblock_ourprice']"
 		//Price Amazon "//span[@id='priceblock_saleprice']"
+		//Price LIST "//div[@data-asin='B00I7HACPQ']//span[@class='a-price']"
 		//Brand Amazon "//a[@id='bylineInfo']"
 		//BREADCRUMB Amazon "//div[@id='wayfinding-breadcrumbs_container']//a"
 		//Get ASIN list items of search reslt Amazon "//li[@class='s-result-item  celwidget  ']/@data-asin|//div[@class[contains(.,'s-result-item')]]/@data-asin"
@@ -86,7 +89,7 @@ class CREATE{
 		$imgQuery = "//script[contains(.,'ImageBlockATF')]";
 		$descriptionQuery = "//div[@id='feature-bullets']/ul/li/span[not(contains(.,'Asegúrate de que esto coincide'))]";
 		$secondDescriptionQuery = "//div[@id='productDescription']//p";
-		$priceQuery = "//span[@id='priceblock_saleprice']|//span[@id='priceblock_ourprice']";
+		$priceQuery = "//div[@data-asin='" . $this->asin . "']//span[@class='a-price']";
 		$brandQuery = "//a[@id='bylineInfo']";
 		$breadcrumbQuery = "//div[@id='wayfinding-breadcrumbs_container']//a";
 		$listAsinQuery = "//li[@class='s-result-item  celwidget  ']/@data-asin|//div[@class[contains(.,'s-result-item')]]/@data-asin";	
@@ -97,7 +100,7 @@ class CREATE{
 		$imagesXpath = $this->xpath->query($imgQuery);
 		$descriptionXpath = $this->xpath->query($descriptionQuery);
 		$secondDescriptionXpath = $this->xpath->query($secondDescriptionQuery);
-		$priceXpath = $this->xpath->query($priceQuery);
+		$priceXpath = $this->priceXpath->query($priceQuery);
 		$brandXpath = $this->xpath->query($brandQuery);
 		$breadcrumbXpath = $this->xpath->query($breadcrumbQuery);
 		$listAsinXpath = $this->xpath->query($listAsinQuery);
@@ -119,14 +122,41 @@ class CREATE{
 		//SPECH DATA
 //		$spechTables = $this->xpath->spechTables();
 		if (!$this->xpath->spechTables()) {
+
 			$spechTables = $this->xpath->xpathToArray($spechTablesXpath);
 			$spechTables = implode($spechTables);
+			$spechTables = preg_replace('/\n+/', "", $spechTables);
 			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $spechTables, $peso);
-			preg_match_all("/Dimensiones\s*[^\d]+([^\<]+)/", $spechTables, $dimensiones);
-			$spechTables = $peso ;
+			preg_match_all("/Dimensiones\s*[^\d]+(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*(\w*)/", $spechTables, $dimensiones);
+			
+			$weight = implode($peso[1])+0;
+			$weightUnit = implode($peso[2]);
+			$dimensions = array($dimensiones[1],$dimensiones[2], $dimensiones[3]);
+			$dimensionsUnit = $dimensiones[4];
+			is_array($dimensionsUnit) ? implode($dimensionsUnit) : $dimensionsUnit ;			
 		}else{
-			$spechTables = $this->xpath->spechTables();
+			$result = $this->xpath->spechTables();
+			//REGEX para tomar las medidas
+			preg_match_all("/(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*(\w*)/", $result[0], $dimensiones);
+			if(is_array($dimensiones[0])){ //A veces el campo Dimensiones esta duplicado, este ciclo toma solo el primero
+				foreach ($dimensiones as $key => $value) {
+					array_unshift($dimensiones, $value[0]);
+				}
+			}
+			$weight = 	$result[1]+0; 
+			$weightUnit = $result[2];
+			$dimensions = array($dimensiones[1],$dimensiones[2],$dimensiones[3]);
+			$dimensionsUnit = $dimensiones[0];
+		}if($weightUnit == "onzas" || $weightUnit == "ounces" || $weightUnit == "oz"){
+			$weight = $weight * 0.0625;
+		}if($dimensionsUnit == "inch" || $dimensionsUnit == "pulgadas" || $dimensionsUnit == "inches" ){
+			for ($i=0; $i < sizeof($dimensions); $i++) { 
+				$dimensions[$i] = round((floatval($dimensions[$i]) * 2.54), 0, PHP_ROUND_HALF_UP);
+			}
+		}if(is_float($weight)){
+			$weight=intval($weight)+1;
 		}
+		
 		
 		//$spechTables = $this->xpath->xpathToArray($spechTablesXpath); 
 		
@@ -157,10 +187,10 @@ class CREATE{
 
 		//Fixed Title for making a better category search
 
-		$fixedTitle = substr($title,0,60);
-		$categoryml = categoryML($brand . $title  . "-" . end($breadcrumb));
-		$categoryName =  $categoryml->name;
-		$categoryID =  $categoryml->id;
+		$fixedTitle = substr($title,0,100);
+		$categoryml = categoryML($fixedTitle);
+		$categoryName =  $categoryml->category_name;
+		$categoryID =  $categoryml->category_id;
 		
 		// echo "<pre>";
 		// print_r($fixedTitle);
@@ -189,7 +219,10 @@ class CREATE{
 		$product["json_images"] = json_encode($imageArr);
 		$product["categoryName"] = $categoryName;
 		$product["categoryID"] = $categoryID;
-		$product['spechTables'] = $spechTables;
+		$product['weight'] = $weight;
+		$product['dimensions'] = $dimensions;
+		$product['weightUnit'] = $weightUnit;
+		$product['dimensionsUnit'] = $dimensionsUnit;
 		
 		return $product;
 
