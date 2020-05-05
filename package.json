@@ -23,8 +23,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@handsontable/vue": "^4.1.1",
         "admin-lte": "^3.0.2",
         "bootstrap-vue": "^2.10.1",
+        "handsontable": "^7.4.2",
         "laravel-mix": "^5.0.4",
         "vuex": "^3.1.3"
     }

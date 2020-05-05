@@ -43,6 +43,7 @@ window.Vue = require('vue');
 Vue.component('singlesearch-component', require('./components/SingleSearchComponent.vue').default);
 Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);
 Vue.component('categoryatributes-component', require('./components/CategoryAttributesComponent.vue').default);
+Vue.component('pricetable-component', require('./components/PriceTableComponent.vue').default);
 
 
 /**

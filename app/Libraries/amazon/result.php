@@ -119,8 +119,9 @@ class CREATE{
 		$brand = $this->xpath->title($brandXpath);//Brand string
 		$breadcrumb = $this->xpath->xpathToArray($breadcrumbXpath);//Bcrumb string
 
-		//SPECH DATA
-//		$spechTables = $this->xpath->spechTables();
+		/*/
+		// Technical Info DATA
+		/*/
 		if (!$this->xpath->spechTables()) {
 
 			$spechTables = $this->xpath->xpathToArray($spechTablesXpath);
@@ -157,10 +158,6 @@ class CREATE{
 			$weight=intval($weight)+1;
 		}
 		
-		
-		//$spechTables = $this->xpath->xpathToArray($spechTablesXpath); 
-		
-		
 		//Configuracion de la descripcion/////////////////////////////////////
 		if(sizeof($descriptionXpath) > 0){
 			$description = $this->xpath->description($descriptionXpath);//Description string with \n
@@ -179,14 +176,16 @@ class CREATE{
 		if (strlen($title) > 150) {
 			$title = substr($title,0,150);
 		}
-		
+
+		if (count($images)>5){
+			$images = array_slice($images, 0, 5);
+		}
 		//Convert image array to Mercadolibre format
-		foreach($images as $image){
+		foreach ($images as $image) {
 			$imageArr[] = array("source" => $image);
 		}
 
 		//Fixed Title for making a better category search
-
 		$fixedTitle = substr($title,0,100);
 		$categoryml = categoryML($fixedTitle);
 		$categoryName =  $categoryml->category_name;
@@ -215,7 +214,8 @@ class CREATE{
 		$product["description"] = $descriptionArr;
 		$product["price"] = $price;
 		$product["brand"] = $brand;
-		$product["images"] = $imageArr;
+		$product["images"] = $images;
+		$product["imagesArr"] = $imageArr;
 		$product["json_images"] = json_encode($imageArr);
 		$product["categoryName"] = $categoryName;
 		$product["categoryID"] = $categoryID;
