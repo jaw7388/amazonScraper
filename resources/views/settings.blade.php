@@ -23,9 +23,8 @@
                     Aca podras ingresar un numero de SKU-ASIN para ver la información del articulo.
                 </div>
                 <div id="app">
-                    <pricetable-component />
+                    <settings-component />
                 </div>
-
                 
             </div>
         </div>

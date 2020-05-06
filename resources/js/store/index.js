@@ -8,6 +8,7 @@ export default {
 		categoryAtributes: null,
 		searchArray: null,
 		mlAttributes: null,
+		userProfile: null,
 	},
 
 	actions: {
@@ -44,8 +45,11 @@ export default {
 		},
 		setSearchArray({commit}, array){
 			commit('setSearchArr', array)
-		}
-		
+		},
+		async getUserProfile({commit}){
+			const datos = await axios.get('profile')
+			commit('getUserInfo', datos)
+		},		
 	},
 
 	mutations: {
@@ -65,6 +69,9 @@ export default {
 		},
 		setSearchArr(state,array){
 			state.searchArray = array
+		},
+		getUserInfo(state,array){
+			state.userProfile = array
 		}
     }
 }

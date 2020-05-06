@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
     //Rutas a las que se permitirá acceso
 
     Auth::routes();
+    //*PAGES----------------------- ||
+    
     Route::get('/', 'HomeController@index');
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('profile', 'HomeController@profile')->name('profile');
@@ -25,15 +27,23 @@ use Illuminate\Support\Facades\Route;
     Route::get('massiveproduct', 'HomeController@massiveProduct')->name('massiveproduct');
     Route::get('singleproduct', 'HomeController@singleProduct')->name('singleproduct');
 
+    //*USER INFO-----------------------|| 
+    Route::get('profile', 'UserProfileController@index')->name('profile');
+    Route::put('profile/update', 'UserProfileController@update')->name('profile');
 
+    //*MERCADOLIBRE AUTH-----------------------|| 
     Route::get('auth/meli', ['as' => 'auth/meli','uses'=>'AuthController@redirectToProvider']);
     Route::get('auth/meli/callback', ['as' => 'auth/meli/callback','uses'=>'AuthController@handleProviderCallback']);
     Route::get('meli/get', ['as' => 'meli/get','uses'=>'AuthController@queryget']);
 
+    //*SCRAPPER AMAZON-----------------------||
     Route::post('search/one', 'PostController@singleProduct')->name('search/one');
     
+    //*CATEGORIES MENU PICKLIST-----------------------||
     Route::get('mlCategories', 'PostController@mlCategories')->name('mlCategories');
     Route::get('mlcategory/{id}', 'PostController@category')->name('mlcategory');
     Route::get('categoryatributes/{id}', 'PostController@categoryAtributes')->name('categoryatributes');
     
+
+
 //});

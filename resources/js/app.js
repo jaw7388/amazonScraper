@@ -40,10 +40,17 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('singlesearch-component', require('./components/SingleSearchComponent.vue').default);
+//Views
+Vue.component('singlesearch-component', require('./views/SingleSearchComponent.vue').default);
+Vue.component('settings-component', require('./views/SettingsComponent.vue').default);
+
+//Components
 Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);
 Vue.component('categoryatributes-component', require('./components/CategoryAttributesComponent.vue').default);
 Vue.component('pricetable-component', require('./components/PriceTableComponent.vue').default);
+Vue.component('weighttable-component', require('./components/WeightTableComponent.vue').default);
+Vue.component('taxestable-component', require('./components/TaxesTableComponent.vue').default);
+
 
 
 /**

@@ -22,28 +22,7 @@
                     <h5><i class="icon fas fa-info"></i>Datos de la cuenta</h5>
                     Aca podras ver y modificar los datos de tu cuenta.
                 </div>
-                
 
-
-
-
-
-
-
-
-
-
-
-
-                
-                
-
-                <pre>
-                    @isset($array)
-                        {{ print_r($array) }}
-                    @endisset
-                
-                </pre>
             </div>
         </div>
     </div>
