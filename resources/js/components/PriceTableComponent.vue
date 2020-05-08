@@ -1,7 +1,7 @@
 <template>
     <hot-table  licenseKey="non-commercial-and-evaluation"
         :settings="settings"
-        ref="myTable"
+        ref="Price"
     ></hot-table>
 </template>
 
@@ -18,8 +18,8 @@
                 colWidths: 70,
                 stretchH: 'all',
                 width: '100%',
-                height: 200,
-                rowHeights: 23,
+                height: 160,
+                rowHeights: 10,
                 columns: [
                     {
                     readOnly: true
@@ -66,7 +66,13 @@
                             }
                         },
                         'row_below': {name: 'Insertar fila abajo'},
-                        'remove_row':{name: 'Borrar fila'},
+                        'remove_row':{
+                            name: 'Borrar fila',
+                            disabled: function() {
+                            // if first row, disable this option
+                            return this.getSelectedRangeLast().to.row === this.countRows()-1
+                            }
+                        },
                         'separator': Handsontable.plugins.ContextMenu.SEPARATOR,
                     }
                 },
@@ -111,7 +117,7 @@
                     }
                     this.update(data)
                     this.settings.data = this.parseIntArray(data)
-                    this.$refs.myTable.hotInstance.render()
+                    this.$refs.Price.hotInstance.render()
                     
                 }
             },
@@ -188,11 +194,12 @@
 
 <style src="../../../node_modules/handsontable/dist/handsontable.full.css">
 
-.htCore{
-    height: 200px; 
+.hot-container{
+    height: 150px; 
     overflow: hidden; 
     width: 100%;
 }
+
 
 </style>
 

@@ -50,7 +50,7 @@ Vue.component('categoryatributes-component', require('./components/CategoryAttri
 Vue.component('pricetable-component', require('./components/PriceTableComponent.vue').default);
 Vue.component('weighttable-component', require('./components/WeightTableComponent.vue').default);
 Vue.component('taxestable-component', require('./components/TaxesTableComponent.vue').default);
-
+Vue.component('forbiddenbrands-component', require('./components/ForbiddenBrandsComponent.vue').default);
 
 
 /**

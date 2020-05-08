@@ -4,7 +4,6 @@
 
 <div id="app">
     <singlesearch-component />
-    
 </div>
 
 <div>

@@ -31,11 +31,11 @@ class CreateUsersTable extends Migration
             $table->text('weight_table')->nullable();
             $table->text('taxes_table')->nullable();
             $table->boolean('taxes_amazon')->default(false);
-            $table->string('shipping_type')->default('gold_pro');
-            $table->boolean('shipping_free')->default(false);
+            $table->string('shipping_type', 100)->default('me2');
+            $table->string('shipping_description', 100)->nullable();
             $table->integer('shipping_cost')->default(0);
             $table->integer('mercadolibre_fee')->nullable();
-            $table->string('post_type')->default('gold_pro');
+            $table->string('post_type', 100)->default('gold_pro');
             $table->boolean('stock_available')->default(true);
             $table->integer('stock_days')->default(10);
             $table->boolean('warranty_available')->default(false);

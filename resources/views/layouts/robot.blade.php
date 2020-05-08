@@ -25,11 +25,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
     <!-- Button toggle Left Sidebar -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link text-white" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
     <!-- SEARCH FORM -->
@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link text-white" data-toggle="dropdown" href="#">
           Mi cuenta
           <i class="fas fa-user-circle"></i>
         </a>
