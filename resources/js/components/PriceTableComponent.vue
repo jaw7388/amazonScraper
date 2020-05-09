@@ -118,7 +118,6 @@
                     this.update(data)
                     this.settings.data = this.parseIntArray(data)
                     this.$refs.Price.hotInstance.render()
-                    
                 }
             },
             createRow(index, amount, source){

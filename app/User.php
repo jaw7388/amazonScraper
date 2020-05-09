@@ -71,8 +71,7 @@ class User extends Authenticatable
         
         @titulo
         @peso
-        @descrip_corta
-        @descrip_larga
+        @descripcion
         @sku
         @medidas
         @color

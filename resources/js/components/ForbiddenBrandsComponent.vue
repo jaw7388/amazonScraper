@@ -70,6 +70,7 @@
                 //     }
                 // },
                 afterChange: this.changeCells,
+                afterRemoveRow: this.removeRows
             }
             }
         },
@@ -77,34 +78,50 @@
         methods: {
             changeCells(changes, source) {
                 if(source != 'loadData'){
+                    console.log(this.data)
                     let data = this.settings.data
                     let lastRow = parseInt(data.length)
                     data[lastRow-1][0] = lastRow
                     data.push(['', ''])
-                    console.log(data)
+                    this.update(data)
                     this.settings.data = data
                     this.$refs.Brands.hotInstance.render()
                     
                 }
             },
+
+            removeRows(index,amount,physicalRows,source){
+                let data = this.settings.data
+                let lastRow = parseInt(data.length)
+                data.splice(index, amount)
+                console.log(index,amount,physicalRows,source)
+                console.log(this.data)
+                data.push(['', ''])
+                this.update(data)
+                this.settings.data = data
+                this.$refs.Brands.hotInstance.render()
+            },
             
-            // update(data){
-            //     let table = JSON.stringify(data)
-            //     axios.put('profile/update',
-            //     {
-            //     'taxes_table':table
-            //     })
-            //     .then((response) => {
-            //     })
-            //     .catch(function(error){
-            //     });
-            // }
+            update(data){
+                let table = JSON.stringify(data)
+                axios.put('profile/update',
+                {
+                'forbiden_brands_list':table
+                })
+                .then((response) => {
+                })
+                .catch(function(error){
+                });
+            }
         },
         components: {
             HotTable
         },
-        mounted() {
-            this.settings.data = [['']]
+        async created() {
+            const datos = await axios.get('profile')
+            //console.log (datos.data.forbiden_brands_list)
+            this.settings.data = JSON.parse(datos.data.forbiden_brands_list)
+            //setTimeout( this.changeCells, 0.005);
         },
     }
 </script>
