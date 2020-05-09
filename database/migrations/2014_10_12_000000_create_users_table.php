@@ -44,7 +44,7 @@ class CreateUsersTable extends Migration
             $table->text('post_description');
             $table->text('post_images')->nullable();
             $table->text('post_synonymous')->nullable();
-            $table->text('forbiden_brands_list')->default([["",""]]);
+            $table->text('forbiden_brands_list');
 //*************************/
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
