@@ -19,7 +19,7 @@
                 stretchH: 'all',
                 width: '100%',
                 height: 160,
-                rowHeights: 10,
+                rowHeights: 23,
                 columns: [
                     {
                     readOnly: true

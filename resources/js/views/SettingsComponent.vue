@@ -254,6 +254,7 @@
         </div>    
     </section>
 
+<!-- Marcas vetadas -->
     <section>
         <div class="card">
             <div class="card-header">
@@ -261,11 +262,9 @@
             </div>
             <div class="card-body">
                 <div class="row mb-2">
-                <!-- Marcas vetadas -->
                     <div class="col-md-4 mb-2">
                         <h4 class="text-primary">Escaner de marcas vetadas</h4>
                         <div class="row p-3">
-                            
                                 <div class="form-group row d-flex align-items-center">
                                     <div class="col-md-4">
                                         <b-form-checkbox  name="check-button" 
@@ -296,7 +295,8 @@
                     <div class="card-body">
                         <div class="card border-danger mb-3" style="max-width: 18rem;">
                             <div class="card-bodyr">
-                                <p class="card-text p-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text p-2">Nota: Las imágenes tienen que estar montadas en bancos de imágenes que tengan instalado SSL (Capa de conexión segura) es decir, que la URL empiece de esta manera ’https://….’ con la s después de la p. No use 'http://...'</p>
+                                <p class="card-text p-2">Las imágenes deben estar en formato .jpg o .png</p>
                             </div>
                         </div>
                             <div class="form-group">
@@ -307,11 +307,12 @@
                             </div>
                             <div class="col-md-8">
                                 <button class="btn btn-primary"
-                                    @click.prevent="update([JSON.stringify(postImages), 'post_images'])"
+                                @click.prevent="urlValidate(postImages[0])"
+                                    
                                 >Guardar</button>
+                                <!-- @click.prevent="update([JSON.stringify(postImages), 'post_images'])" -->
                             </div>
                     </div>
-
                 </div>
             </div>
             <div class="col-md-4">
@@ -393,14 +394,31 @@ export default {
         getData(data){
             console.log(data)
         },
-        makeToast(variant = null) {
-            this.$bvToast.toast('Guardado con éxito', {
+        makeToast(variant = null, message = "Guardado con éxito") {
+            this.$bvToast.toast( message, {
                 title: `Variant ${variant || 'default'}`,
                 variant: variant,
                 solid: true
             })
+        },
+        //(ftp|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?(jpg|png)
+        urlValidate(data){
+            let regex = /(ftp|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?(jpg|png)/
+            
+            if (!regex.test(this.postImages[0])) {
+                console.log(0)
+                return
+            }
+            if (!regex.test(this.postImages[1])) {
+                console.log(1)
+                return
+            }
+            if (regex.test(this.postImages[0]) && regex.test(this.postImages[1])) {
+                console.log('Exito')
+                
+            }
+            
         }
-    
 
         // updateAmazonTax(){
         //     this.amazonTaxCheck ? this.amazonTaxCheck = false : this.amazonTaxCheck= true            

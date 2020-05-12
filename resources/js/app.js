@@ -43,6 +43,8 @@ window.Vue = require('vue');
 //Views
 Vue.component('singlesearch-component', require('./views/SingleSearchComponent.vue').default);
 Vue.component('settings-component', require('./views/SettingsComponent.vue').default);
+Vue.component('home-component', require('./views/HomeComponent.vue').default);
+
 
 //Components
 Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);

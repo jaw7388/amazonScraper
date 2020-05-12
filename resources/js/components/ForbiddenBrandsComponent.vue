@@ -69,8 +69,8 @@
                 //         }
                 //     }
                 // },
-                afterChange: this.changeCells,
-                afterRemoveRow: this.removeRows
+                //afterChange: this.changeCells,
+                //afterRemoveRow: this.removeRows
             }
             }
         },
