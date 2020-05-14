@@ -49,7 +49,7 @@ class AuthController extends Controller
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
         $avatar = $meliUser->user;
         //$avatar = $avatar['thumbnail'];
-        $avatar = $avatar['picture_url'];
+       // $avatar = $avatar['picture_url'];
 
         User::where('id', $this->currentUser)
               ->update([
