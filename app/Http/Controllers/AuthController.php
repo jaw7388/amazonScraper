@@ -6,6 +6,7 @@ use App\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Kolovious\MeliSocialite\Facade\Meli;
+use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 
@@ -67,7 +68,8 @@ class AuthController extends Controller
                 'expires_at' => $meliUser->expires_at],  
         );
 
-        return view('home', [ 'avatar'=>$meliUser, 'xxx'=>$avatar]);
+        return Redirect::back();
+        //return view('home', [ 'avatar'=>$meliUser, 'xxx'=>$avatar]);
     }  
 
     public function queryget()
