@@ -48,9 +48,8 @@ class AuthController extends Controller
         $meliUser = Socialite::driver('meli')->user();
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
         $avatar = $meliUser->user;
-        $xxx = $meliUser->user;
-        $xxx = $xxx['thumbnail'];
-        $xxx = $xxx['picture_url'];
+        $avatar = $avatar['thumbnail'];
+        $avatar = $avatar['picture_url'];
 
         if (isset($meliUser->avatar)) {
             $avatar = $meliUser->avatar;
@@ -69,7 +68,7 @@ class AuthController extends Controller
                 'expires_at' => $meliUser->expires_at],  
         );
 
-        return view('home', [ 'avatar'=>$meliUser, 'xxx'=>$xxx]);
+        return view('home', [ 'avatar'=>$meliUser, 'xxx'=>$avatar]);
     }  
 
     public function queryget()
