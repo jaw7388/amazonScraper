@@ -49,8 +49,8 @@ class AuthController extends Controller
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
         $avatar = $meliUser->user;
         $xxx = $meliUser->user;
-        // $avatar = $avatar->thumbnail;
-        // $avatar = $avatar->picture_url;
+        $xxx = $xxx['thumbnail'];
+        $xxx = $xxx['picture_url'];
 
         if (isset($meliUser->avatar)) {
             $avatar = $meliUser->avatar;
