@@ -51,7 +51,7 @@ class XPATH{
 			//Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*[\w]+
 			//preg_match_all("/envío\s*\n*(\d+\.*\,*\d*)\s*\n*(\w+)/", $html, $match);
 			// Dimensiones del producto\s*[^\d]+[^\<]+
-			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $html, $peso);
+			preg_match_all("/Peso del producto\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $html, $peso);
 			preg_match_all("/Dimensiones\s*[^\d]+([^\<]+)/", $html, $dimensiones);
 			$result  = array(implode(array_unique($dimensiones[1])), implode(array_unique($peso[1])), implode(array_unique($peso[2])));
 			

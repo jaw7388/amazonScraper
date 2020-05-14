@@ -50,7 +50,7 @@ class AuthController extends Controller
         if (isset($meliUser->avatar)) {
             $avatar = $meliUser->avatar;
         }else{
-            $avatar = "";
+            $avatar = null;
         }
         
         //$avatar = $avatar['thumbnail'];

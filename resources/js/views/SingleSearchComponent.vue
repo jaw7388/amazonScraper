@@ -98,7 +98,7 @@
                             <b-form-textarea
                                 id="textarea-rows"
                                 rows="11"
-                                
+                                v-model="userData.post_description"
                             ></b-form-textarea>
                         </div>
                     </div>
@@ -107,7 +107,10 @@
                     <div class="row">
                         <div class="col-md-3">
                             <h5 class="text-primary">Tipo de publicación</h5>
-                            <input type="text">
+                            <b-form-select 
+                                v-model="publicacionTipoSelected"
+                                :options="publicacionTipo">
+                            </b-form-select>
                         </div>
                         <div class="col-md-3">
                             <h5 class="text-primary">Peso del envío</h5>
@@ -154,9 +157,6 @@
             </div>
             <button @click.prevent="logAttributes"></button>
         </section>
-    <pre>
-                            {{array}}
-                            </pre>
     </div>
 </template>
 
@@ -168,6 +168,12 @@
                 sku :'',
                 array: [],
                 categoryAtributes: null,
+                userData: null,
+                publicacionTipo: [
+                    {value: "gold_pro", text: 'Premium'},
+                    {value:'gold_special', text: 'Clásica'},
+                ],
+                publicacionTipoSelected: null,
             }
         },
         methods: {
@@ -199,22 +205,28 @@
                 } 
             },
             mandatoryAttribute(index){
-                
                 if (this.categoryAtributes[index].attributes[0].tags[0]) {
                     let tag = this.categoryAtributes[index].attributes[0].tags[0]
                     if (tag.includes("required")) {
                         return true
                     }
                 } 
-                //return tag.includes("required")                
             }
             
         },
         computed: {
             ...mapState(['categorySelected', 'categoriesHidden','productHidden', 'mlAttributes']),
         },
-        mounted() {
+        async created() {
+            const datos = await axios.get('profile')
+            this.userData = datos.data
+            this.publicacionTipoSelected = datos.data.post_type
         },
     }
     
+
+
+    
+        
+
 </script>

@@ -128,7 +128,7 @@ class CREATE{
 			$spechTables = implode($spechTables);
 			$spechTables = preg_replace('/\n+/', "", $spechTables);
 			//REGEX para tomar el peso
-			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $spechTables, $peso);
+			preg_match_all("/Peso del producto\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $spechTables, $peso);
 			preg_match_all("/Dimensiones\s*[^\d]+(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*(\w*)/", $spechTables, $dimensiones);
 			
 			$weight = implode($peso[1])+0;
@@ -145,6 +145,7 @@ class CREATE{
 					array_unshift($dimensiones, $value[0]);
 				}
 			}
+			
 			$weight = 	$result[1]+0; 
 			$weightUnit = $result[2];
 			$dimensions = array($dimensiones[1],$dimensiones[2],$dimensiones[3]);
