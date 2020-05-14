@@ -8,8 +8,8 @@
     <pre>
     {{ Auth::user()->id ?? '' }}
     
-    @isset($result)
-        {{ print_r($result) }}    
+    @isset($xxx)
+        {{ print_r($xxx) }}    
     @endisset
     @isset($meliUser)
         {{ print_r($meliUser) }}    
