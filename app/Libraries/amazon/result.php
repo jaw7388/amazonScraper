@@ -127,6 +127,7 @@ class CREATE{
 			$spechTables = $this->xpath->xpathToArray($spechTablesXpath);
 			$spechTables = implode($spechTables);
 			$spechTables = preg_replace('/\n+/', "", $spechTables);
+			//REGEX para tomar el peso
 			preg_match_all("/Peso del envío\s*[^\d]+(\d+\.*\,*\d*)\s*(\w+)/", $spechTables, $peso);
 			preg_match_all("/Dimensiones\s*[^\d]+(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*\w\s*(\d+\.*\,*\d*)+\s*(\w*)/", $spechTables, $dimensiones);
 			

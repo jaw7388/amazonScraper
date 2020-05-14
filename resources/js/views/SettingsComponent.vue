@@ -17,7 +17,7 @@
     <section>
         <div class="card">
             <div class="card-header">
-                <h3>Márgenes de ganancias </h3>
+                <h3>Configuración </h3>
             </div>
             
             <div class="card-body">
@@ -405,19 +405,18 @@ export default {
         urlValidate(data){
             let regex = /(ftp|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?(jpg|png)/
             
-            if (!regex.test(this.postImages[0])) {
-                console.log(0)
+            if (regex.test(this.postImages[0]) || this.postImages[0] == '') {
+                if (regex.test(this.postImages[1]) || this.postImages[1] == '') {
+                    //this.makeToast('success', "Guardado con éxito")
+                    this.update([this.postImages, 'post_images'])
+                }else{
+                    this.makeToast('danger', "La URL 2 tiene formato incorrecto")
+                    return
+                }
+            }else{
+                this.makeToast('danger', "La URL 1 tiene formato incorrecto")
                 return
             }
-            if (!regex.test(this.postImages[1])) {
-                console.log(1)
-                return
-            }
-            if (regex.test(this.postImages[0]) && regex.test(this.postImages[1])) {
-                console.log('Exito')
-                
-            }
-            
         }
 
         // updateAmazonTax(){
