@@ -47,12 +47,11 @@ class AuthController extends Controller
     {
         $meliUser = Socialite::driver('meli')->user();
         //$mlUser = User::where('ml_id', $meliUser->id)->first();
-        $avatar = $meliUser->user;
-        $avatar = $avatar['thumbnail'];
-        $avatar = $avatar['picture_url'];
-
-        if (isset($avatar)) {
-            $avatar = $meliUser->avatar;
+        $user = $meliUser->user;
+        $avatar = $user['thumbnail'];
+        
+        if (isset($avatar['picture_url'])) {
+            $avatar = $avatar['picture_url'];
         }else{
             $avatar = null;
         }
